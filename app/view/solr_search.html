@@ -1,0 +1,37 @@
+
+<form ng-enter="ctrl.search()">
+	<div class="form form-inline" role="search">
+		<input ng-model="ctrl.searchText" class="form-control input-sm main-search-box" placeholder="Search" />
+		<select class="form-control input-sm" name="mySelect" id="mySelect"
+		ng-options="option.name for option in ctrl.data.availableOptions track by option.id"
+		ng-model="ctrl.data.selectedOption"
+		ng-change="ctrl.setItemsPerPage()"></select>
+
+		<button type="submit" class="btn btn-success btn-sm" ng-click="ctrl.search()">
+			Search
+		</button>
+		<button type="reset" class="btn btn-primary btn-sm" onClick="location.href='/index.html'">
+			Reset
+		</button>
+
+		<br/><br/>
+		<label>
+			<input type="checkbox" ng-model="ctrl.advanceSearchCheckboxModel.value">
+			Advanced Search
+		</label><br/>
+
+		<div ng-if="ctrl.advanceSearchCheckboxModel.value">
+			<div class="panel panel-default">
+			  <div class="panel-body" ng-init="ctrl.selected.item.value = ctrl.facetItems[0].value">
+					<span ng-repeat="item in ctrl.facetItems">
+						<label>
+							<input type="radio" ng-model="ctrl.selected.item.value" value="{{item.value}}">
+							{{item.label}}
+						</label>&nbsp;
+					</span> <br>
+					<input ng-model="ctrl.advanceSearchText" class="form-control input-sm main-search-box" placeholder=" Advanced Search" />  </br>
+				</div>
+			</div>
+		</div>
+	<div>
+</form>

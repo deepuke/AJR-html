@@ -1,0 +1,9 @@
+<div>
+	<h4>Refined By:</h4>  
+	<ul>
+	  <li ng-repeat="item in ctrl.selectedItemsArray">
+	 <b>	<span ng-bind="ctrl.changeKeyToLabel(item.key)"></span> :  <code class="facetitem" ng-bind="ctrl.showSlectedItemCSV(item.value)"></code></b> 
+	  </li>
+	</ul>
+	<hr class="masthead-hr"/>
+</div>

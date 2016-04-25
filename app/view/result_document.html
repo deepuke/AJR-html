@@ -1,0 +1,13 @@
+<div class="panel-body no-padding bottom-10">
+  <a class="cursor-pointer"  data-ng-click="ctrl.renderImage(ctrl.doc.id)">
+  {{ctrl.doc.id}}
+  </a>
+
+  <div ng-bind-html="ctrl.doc.content | highlight:ctrl.searchText" ng-class="ctrl.class"></div>
+    <a ng-click="ctrl.changeClass()" class="cursor-pointer"><small><b>{{ctrl.showLabel}}..</b></small></a>
+  </div>  
+</div>
+
+
+
+

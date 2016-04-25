@@ -1,0 +1,62 @@
+<!DOCTYPE html>		
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>N4mative</title>
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="css/styles.css" type="text/css" media="all" />
+	</head>
+
+	<body ng-app="solrApp">
+		<div ng-controller="trackingCtrl as ctrl">
+			<div class="container">
+				<img src="images/logo.png" alt="Logo" />
+					<ul class="nav navbar-nav navbar-right">								
+						<li><a href="index.html">dashboard</a></li>												
+					</ul>
+
+				<br><br><br><br><br />
+				
+				<div class="row">
+					<div class="col-md-12">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<td><b>Row Key</b></td>
+									<td><b></>Time Stamp</b></td>
+									<td><b>Status</b></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="item in ctrl.tableItems">
+									<td>{{item.rk}}</td>
+									<td>{{item.ti}}</td>
+									<td>{{item.st}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Libs -->
+		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+		<!-- Controllers -->
+		<script src="app/app.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="app/Controllers/tracking.ctrl.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- Services -->
+		<script src="app/services/services.js" type="text/javascript" charset="utf-8"></script>
+		
+
+	</body>
+</html>

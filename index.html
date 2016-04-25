@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>N4mative</title>
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+        <META HTTP-EQUIV="Expires" CONTENT="-1">
+		<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="css/styles.css" type="text/css" media="all" />
+	</head>
+
+	<body ng-app="solrApp">
+		<div ng-controller="mainCtrl as ctrl">
+			<div class="container">
+				<img src="images/logo.png" alt="Logo" />
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="tracking.html" >Tracking</a></li>
+					</ul>
+
+				<br><br><br><br><br />
+
+				<div class="row">
+					<div class="col-md-3">
+						<solr-selected selected-items-array="ctrl.selectedItemsArray" ng-show="ctrl.showSelected"></solr-selected>
+
+						<div ng-repeat="(field, values)  in ctrl.facet_fields">
+							<solr-facet  field="field" values="values"></solr-facet>
+							<hr class="masthead-hr">
+						</div>
+					</div>
+
+					<div class="col-md-9">
+						<div class="row">
+							<div class="col-md-12">
+								<solr-search preload='true' data-search="ctrl.search();"></solr-search>
+							</div>
+						</div>
+						<div class="row" ng-show="ctrl.docs.length">
+							<div class="col-md-12">
+								<div class="results">
+								<h6 > About {{ctrl.numFound}} results in ({{ctrl.queryTime/1000}} seconds)</h6>
+								</div>
+								<ul class="list-unstyled">
+									<!--.slice(((ctrl.currentPage-1)*ctrl.itemsPerPage), ((ctrl.currentPage)*ctrl.itemsPerPage))-->
+
+									<!--li ng-repeat="doc in highlightdocs.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))"-->
+									<li ng-repeat="doc in ctrl.docs">
+										<result-document record="doc" search-text="ctrl.searchText"></result-document>
+									</li>
+								</ul>
+								<div class="text-center">
+								<uib-pagination
+									max-size="ctrl.maxSize"
+									total-items="ctrl.totalItems"
+									ng-model="ctrl.currentPage"
+									ng-change="ctrl.pageChanged()"
+									boundary-links="true"
+									force-ellipses="true"
+									num-pages="ctrl.numPages"></uib-pagination>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Libs -->
+		<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-animate/angular-animate.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+		<script type="text/javascript" src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+		<!-- Controllers -->
+		<script src="app/app.js" type="text/javascript" charset="utf-8"></script>
+		<script src="app/controllers/main.ctrl.js" type="text/javascript" charset="utf-8"></script>
+		<script src="app/controllers/solrSearch.ctrl.js" type="text/javascript" charset="utf-8"></script>
+		<script src="app/controllers/solrFacet.ctrl.js" type="text/javascript" charset="utf-8"></script>
+		<script src="app/controllers/solrFacetResult.ctrl.js" type="text/javascript" charset="utf-8"></script>
+		<script src="app/controllers/resultDocument.ctrl.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- Services -->
+		<script src="app/services/services.js" type="text/javascript" charset="utf-8"></script>
+		<script src="app/services/constants.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- Directives -->
+		<!--script src="app/directives/solr.dir.js" type="text/javascript" charset="utf-8"></script-->
+		<!--script src="app/directives/solrFacetGroup.dir.js" type="text/javascript" charset="utf-8"></script-->
+		<script src="app/directives/solrSearch.dir.js" type="text/javascript" charset="utf-8"></script>
+		<script src="app/directives/solrFacet.dir.js" type="text/javascript" charset="utf-8"></script>
+		<script src="app/directives/solrResultDocument.dir.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="app/directives/solrSelected.dir.js" type="text/javascript" charset="utf-8"></script>
+		<script src="app/directives/solrFacetResult.dir.js" type="text/javascript" charset="utf-8"></script>
+
+		<!-- Filters -->
+		<script src="app/filters/solr.filter.js" type="text/javascript" charset="utf-8"></script>
+
+	</body>
+</html>
